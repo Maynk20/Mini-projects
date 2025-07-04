@@ -1,90 +1,480 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Random Quote Genrator</title>
+          <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                              name="viewport"
+                              content="width=device-width, initial-scale=1.0"
+                    />
+                    <title>Random Quote Genrator</title>
 
-<style>
-          body{
-                    background: #f4f4f4;
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          }
+                    <style>
+                              body {
+                                        background: #f4f4f4;
+                                        font-family: "Segoe UI", Tahoma, Geneva,
+                                                  Verdana, sans-serif;
+                              }
 
-          #container{
-                    max-width: 400px;
-                    margin: 80px auto;
-                    padding: 24px;
-                    background: #fff;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px #ccc;
+                              #container {
+                                        max-width: 400px;
+                                        margin: 80px auto;
+                                        padding: 24px;
+                                        background: #fff;
+                                        border-radius: 8px;
+                                        box-shadow: 0 2px 8px #ccc;
+                              }
 
-          }
+                              #quote {
+                                        font-size: 1.3em;
+                                        margin-bottom: 12px;
+                                        color: #333;
+                              }
 
-          #quote{
-                    font-size: 1.3em;
-                    margin-bottom: 12px;
-                    color:#333;
-          }
+                              #author {
+                                        text-align: right;
+                                        color: #888;
+                                        margin-bottom: 20px;
+                              }
 
-          #author{
-                    text-align: right;
-                    color: #888;
-                    margin-bottom: 20px;
-          }
+                              #btn {
+                                        padding: 8px 20px;
+                                        background: #0078d7;
+                                        color: #fff;
+                                        border: none;
+                                        border-radius: 4px;
+                                        cursor: pointer;
+                              }
 
-          #btn{
-                    padding: 8px 20px;
-                    background: #0078d7;
-                    color: #fff;
-                    border: none;
-                    border-radius: 4px;
-                    cursor: pointer;
-          }
+                              #btn:hover {
+                                        background: #005fa3;
+                              }
+                    </style>
+          </head>
+          <body>
+                    <h3>Random Quote Genrator</h3>
+                    <hr />
+                    <div id="container">
+                              <div id="quote">
+                                        Please Click The button To Genrate Quote
+                              </div>
+                              <div id="author"></div>
+                              <button type="submit" id="btn">Submit</button>
+                    </div>
+                    <script>
+                              const quotes = [
+                                        {
+                                                  quote: "The only way to do great work is to love what you do.",
+                                                  author: "Steve Jobs",
+                                        },
+                                        {
+                                                  quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                                                  author: "Winston Churchill",
+                                        },
+                                        {
+                                                  quote: "Believe you can and you're halfway there.",
+                                                  author: "Theodore Roosevelt",
+                                        },
+                                        {
+                                                  quote: "What we think, we become.",
+                                                  author: "Buddha",
+                                        },
+                                        {
+                                                  quote: "The best way to get started is to quit talking and begin doing.",
+                                                  author: "Walt Disney",
+                                        },
+                                        {
+                                                  quote: "The future belongs to those who believe in the beauty of their dreams.",
+                                                  author: "Eleanor Roosevelt",
+                                        },
+                                        {
+                                                  quote: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+                                                  author: "Benjamin Franklin",
+                                        },
+                                        {
+                                                  quote: "It is during our darkest moments that we must focus to see the light.",
+                                                  author: "Aristotle",
+                                        },
+                                        {
+                                                  quote: "Whoever is happy will make others happy too.",
+                                                  author: "Anne Frank",
+                                        },
+                                        {
+                                                  quote: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+                                                  author: "Ralph Waldo Emerson",
+                                        },
+                                        {
+                                                  quote: "You will face many defeats in life, but never let yourself be defeated.",
+                                                  author: "Maya Angelou",
+                                        },
+                                        {
+                                                  quote: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+                                                  author: "Nelson Mandela",
+                                        },
+                                        {
+                                                  quote: "Life is what happens when you're busy making other plans.",
+                                                  author: "John Lennon",
+                                        },
+                                        {
+                                                  quote: "The only impossible journey is the one you never begin.",
+                                                  author: "Tony Robbins",
+                                        },
+                                        {
+                                                  quote: "In the end, it's not the years in your life that count. It's the life in your years.",
+                                                  author: "Abraham Lincoln",
+                                        },
+                                        {
+                                                  quote: "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+                                                  author: "Thomas A. Edison",
+                                        },
+                                        {
+                                                  quote: "The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.",
+                                                  author: "Helen Keller",
+                                        },
+                                        {
+                                                  quote: "It is always darkest just before the dawn.",
+                                                  author: "Harvey Dent",
+                                        },
+                                        {
+                                                  quote: "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success.",
+                                                  author: "James Cameron",
+                                        },
+                                        {
+                                                  quote: "The journey of a thousand miles begins with one step.",
+                                                  author: "Lao Tzu",
+                                        },
+                                        {
+                                                  quote: "Don't be afraid to give up the good to go for the great.",
+                                                  author: "John D. Rockefeller",
+                                        },
+                                        {
+                                                  quote: "Happiness is not something readymade. It comes from your own actions.",
+                                                  author: "Dalai Lama",
+                                        },
+                                        {
+                                                  quote: "The mind is everything. What you think you become.",
+                                                  author: "Buddha",
+                                        },
+                                        {
+                                                  quote: "The only limit to our realization of tomorrow will be our doubts of today.",
+                                                  author: "Franklin D. Roosevelt",
+                                        },
+                                        {
+                                                  quote: "The difference between ordinary and extraordinary is that little extra.",
+                                                  author: "Jimmy Johnson",
+                                        },
+                                        {
+                                                  quote: "You must be the change you wish to see in the world.",
+                                                  author: "Mahatma Gandhi",
+                                        },
+                                        {
+                                                  quote: "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.",
+                                                  author: "Martin Luther King Jr.",
+                                        },
+                                        {
+                                                  quote: "To handle yourself, use your head; to handle others, use your heart.",
+                                                  author: "Eleanor Roosevelt",
+                                        },
+                                        {
+                                                  quote: "Never let the fear of striking out keep you from playing the game.",
+                                                  author: "Babe Ruth",
+                                        },
+                                        {
+                                                  quote: "Life is really simple, but we insist on making it complicated.",
+                                                  author: "Confucius",
+                                        },
+                                        {
+                                                  quote: "The best revenge is massive success.",
+                                                  author: "Frank Sinatra",
+                                        },
+                                        {
+                                                  quote: "It's not the years in your life that count. It's the life in your years.",
+                                                  author: "Abraham Lincoln",
+                                        },
+                                        {
+                                                  quote: "Strive not to be a success, but rather to be of value.",
+                                                  author: "Albert Einstein",
+                                        },
+                                        {
+                                                  quote: "The purpose of our lives is to be happy.",
+                                                  author: "Dalai Lama",
+                                        },
+                                        {
+                                                  quote: "Be the change that you wish to see in the world.",
+                                                  author: "Mahatma Gandhi",
+                                        },
+                                        {
+                                                  quote: "A life spent making mistakes is not only more honorable, but more useful, than a life spent doing nothing.",
+                                                  author: "George Bernard Shaw",
+                                        },
+                                        {
+                                                  quote: "Always forgive your enemies; nothing annoys them so much.",
+                                                  author: "Oscar Wilde",
+                                        },
+                                        {
+                                                  quote: "I have not failed. I've just found 10,000 ways that won't work.",
+                                                  author: "Thomas A. Edison",
+                                        },
+                                        {
+                                                  quote: "If you can dream it, you can do it.",
+                                                  author: "Walt Disney",
+                                        },
+                                        {
+                                                  quote: "The only way to do great work is to love what you do.",
+                                                  author: "Steve Jobs",
+                                        },
+                                        {
+                                                  quote: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+                                                  author: "Nelson Mandela",
+                                        },
+                                        {
+                                                  quote: "The future belongs to those who believe in the beauty of their dreams.",
+                                                  author: "Eleanor Roosevelt",
+                                        },
+                                        {
+                                                  quote: "The only thing necessary for the triumph of evil is for good men to do nothing.",
+                                                  author: "Edmund Burke",
+                                        },
+                                        {
+                                                  quote: "Imagination is more important than knowledge.",
+                                                  author: "Albert Einstein",
+                                        },
+                                        {
+                                                  quote: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+                                                  author: "Ralph Waldo Emerson",
+                                        },
+                                        {
+                                                  quote: "Do one thing every day that scares you.",
+                                                  author: "Eleanor Roosevelt",
+                                        },
+                                        {
+                                                  quote: "The mind is everything. What you think you become.",
+                                                  author: "Buddha",
+                                        },
+                                        {
+                                                  quote: "The best time to plant a tree was 20 years ago. The second best time is now.",
+                                                  author: "Chinese Proverb",
+                                        },
+                                        {
+                                                  quote: "Keep your face always toward the sunshine, and shadows will fall behind you.",
+                                                  author: "Walt Whitman",
+                                        },
+                                        {
+                                                  quote: "The only person you are destined to become is the person you decide to be.",
+                                                  author: "Ralph Waldo Emerson",
+                                        },
+                                        {
+                                                  quote: "The secret of getting ahead is getting started.",
+                                                  author: "Mark Twain",
+                                        },
+                                        {
+                                                  quote: "Everything you’ve ever wanted is on the other side of fear.",
+                                                  author: "George Addair",
+                                        },
+                                        {
+                                                  quote: "Believe you can and you’re halfway there.",
+                                                  author: "Theodore Roosevelt",
+                                        },
+                                        {
+                                                  quote: "Happiness is not by chance, but by choice.",
+                                                  author: "Jim Rohn",
+                                        },
+                                        {
+                                                  quote: "Our lives begin to end the day we become silent about things that matter.",
+                                                  author: "Martin Luther King Jr.",
+                                        },
+                                        {
+                                                  quote: "Challenges are what make life interesting. Overcoming them is what makes life meaningful.",
+                                                  author: "Joshua Marine",
+                                        },
+                                        {
+                                                  quote: "The only limit to our realization of tomorrow will be our doubts of today.",
+                                                  author: "Franklin D. Roosevelt",
+                                        },
+                                        {
+                                                  quote: "It is never too late to be what you might have been.",
+                                                  author: "George Eliot",
+                                        },
+                                        {
+                                                  quote: "Do not wait; the time will never be 'just right'.",
+                                                  author: "Napoleon Hill",
+                                        },
+                                        {
+                                                  quote: "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+                                                  author: "Zig Ziglar",
+                                        },
+                                        {
+                                                  quote: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.",
+                                                  author: "Albert Schweitzer",
+                                        },
+                                        {
+                                                  quote: "If opportunity doesn’t knock, build a door.",
+                                                  author: "Milton Berle",
+                                        },
+                                        {
+                                                  quote: "Start where you are. Use what you have. Do what you can.",
+                                                  author: "Arthur Ashe",
+                                        },
+                                        {
+                                                  quote: "We know what we are, but know not what we may be.",
+                                                  author: "William Shakespeare",
+                                        },
+                                        {
+                                                  quote: "When you reach the end of your rope, tie a knot in it and hang on.",
+                                                  author: "Franklin D. Roosevelt",
+                                        },
+                                        {
+                                                  quote: "Never regret anything that made you smile.",
+                                                  author: "Mark Twain",
+                                        },
+                                        {
+                                                  quote: "The best view comes after the hardest climb.",
+                                                  author: "Unknown",
+                                        },
+                                        {
+                                                  quote: "If you want to live a happy life, tie it to a goal, not to people or things.",
+                                                  author: "Albert Einstein",
+                                        },
+                                        {
+                                                  quote: "The secret of success is to do the common thing uncommonly well.",
+                                                  author: "John D. Rockefeller Jr.",
+                                        },
+                                        {
+                                                  quote: "Change your thoughts and you change your world.",
+                                                  author: "Norman Vincent Peale",
+                                        },
+                                        {
+                                                  quote: "The greatest discovery of all time is that a person can change his future by merely changing his attitude.",
+                                                  author: "Oprah Winfrey",
+                                        },
+                                        {
+                                                  quote: "The only true wisdom is in knowing you know nothing.",
+                                                  author: "Socrates",
+                                        },
+                                        {
+                                                  quote: "Don't watch the clock; do what it does. Keep going.",
+                                                  author: "Sam Levenson",
+                                        },
+                                        {
+                                                  quote: "The road to success is always under construction.",
+                                                  author: "Lily Tomlin",
+                                        },
+                                        {
+                                                  quote: "It does not matter how slowly you go as long as you do not stop.",
+                                                  author: "Confucius",
+                                        },
+                                        {
+                                                  quote: "What seems to us as bitter trials are often blessings in disguise.",
+                                                  author: "Oscar Wilde",
+                                        },
+                                        {
+                                                  quote: "The harder I work, the luckier I get.",
+                                                  author: "Samuel Goldwyn",
+                                        },
+                                        {
+                                                  quote: "We must let go of the life we have planned, so as to accept the one that is waiting for us.",
+                                                  author: "Joseph Campbell",
+                                        },
+                                        {
+                                                  quote: "A person who never made a mistake never tried anything new.",
+                                                  author: "Albert Einstein",
+                                        },
+                                        {
+                                                  quote: "The key is not to prioritize what's on your schedule, but to schedule your priorities.",
+                                                  author: "Stephen Covey",
+                                        },
+                                        {
+                                                  quote: "A successful man is one who can lay a firm foundation with the bricks others have thrown at him.",
+                                                  author: "David Brinkley",
+                                        },
+                                        {
+                                                  quote: "If you are not willing to risk the usual, you will have to settle for the ordinary.",
+                                                  author: "Jim Rohn",
+                                        },
+                                        {
+                                                  quote: "You miss 100% of the shots you don't take.",
+                                                  author: "Wayne Gretzky",
+                                        },
+                                        {
+                                                  quote: "Courage is not the absence of fear, but rather the judgment that something else is more important than fear.",
+                                                  author: "Ambrose Redmoon",
+                                        },
+                                        {
+                                                  quote: "The best way to predict the future is to create it.",
+                                                  author: "Peter Drucker",
+                                        },
+                                        {
+                                                  quote: "Either you run the day or the day runs you.",
+                                                  author: "Jim Rohn",
+                                        },
+                                        {
+                                                  quote: "Perfection is not attainable, but if we chase perfection we can catch excellence.",
+                                                  author: "Vince Lombardi",
+                                        },
+                                        {
+                                                  quote: "Challenges are gifts that force us to search for a new center of gravity. Don't fight them. Just find a new way to stand.",
+                                                  author: "Oprah Winfrey",
+                                        },
+                                        {
+                                                  quote: "It's not whether you get knocked down, it's whether you get up.",
+                                                  author: "Vince Lombardi",
+                                        },
+                                        {
+                                                  quote: "What you do today can improve all your tomorrows.",
+                                                  author: "Ralph Marston",
+                                        },
+                                        {
+                                                  quote: "Happiness is when what you think, what you say, and what you do are in harmony.",
+                                                  author: "Mahatma Gandhi",
+                                        },
+                                        {
+                                                  quote: "You are never too old to set another goal or to dream a new dream.",
+                                                  author: "C.S. Lewis",
+                                        },
+                                        {
+                                                  quote: "Go confidently in the direction of your dreams. Live the life you've imagined.",
+                                                  author: "Henry David Thoreau",
+                                        },
+                                        {
+                                                  quote: "The journey of a thousand miles begins with a single step.",
+                                                  author: "Lao Tzu",
+                                        },
+                                        {
+                                                  quote: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
+                                                  author: "Roy T. Bennett",
+                                        },
+                                        {
+                                                  quote: "Do what you can, with what you have, where you are.",
+                                                  author: "Theodore Roosevelt",
+                                        },
+                                        {
+                                                  quote: "The future starts today, not tomorrow.",
+                                                  author: "Pope John Paul II",
+                                        },
+                                        {
+                                                  quote: "If you don't like something, change it. If you can't change it, change your attitude.",
+                                                  author: "Maya Angelou",
+                                        },
+                              ];
 
-          #btn:hover{
-                    background:#005fa3;
-          }
-</style>
-</head>
-<body>
-          <h3>Random Quote Genrator</h3>
-          <hr>
-<div id="container">
-          <div id="quote">Please Click The button To Genrate Quote</div>
-          <div id="author"></div>
-          <button type="submit" id="btn">
-                    Submit
-          </button>
-</div>
-<script>
-          const quotes = [
-                    {quote: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
-                    {quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill"},
-                    {quote: "Believe you can and you're halfway there.", author: "Theodore Roosevelt"},
-                    {quote: "What we think, we become.", author: "Buddha"},
-                    {quote: "The best way to get started is to quit talking and begin doing.", author: "Walt Disney"},
-          ];
+                              const quote = document.getElementById("quote");
+                              const author = document.getElementById("author");
+                              const genrateBtn = document.getElementById("btn");
 
-          const quote = document.getElementById("quote");
-          const author = document.getElementById("author");
-          const genrateBtn = document.getElementById("btn");
+                              //Main
+                              function GenrateQuote() {
+                                        const RandomIndex = Math.floor(
+                                                  Math.random() * quotes.length,
+                                        );
+                                        const RandomQuote = quotes[RandomIndex];
 
-          //Main
-          function GenrateQuote(){
-                    const RandomIndex = Math.floor(Math.random() * quotes.length);
-                    const RandomQuote = quotes[RandomIndex];
+                                        quote.textContent = `"${RandomQuote.quote}"`;
+                                        author.textContent = `-${RandomQuote.author}`;
+                              }
 
-                    quote.textContent = `"${RandomQuote.quote}"`;
-                    author.textContent = `-${RandomQuote.author}`;
-
-                    
-          }
-
-          genrateBtn.addEventListener("click", GenrateQuote);
-
-    
-</script>
-
-</body>
+                              genrateBtn.addEventListener(
+                                        "click",
+                                        GenrateQuote,
+                              );
+                    </script>
+          </body>
 </html>
